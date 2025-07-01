@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기 결과</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div class="main-form">
+    <h2>아이디 찾기 결과</h2>
+    <!-- 성공시 아이디 출력 -->
+    <div th:if="${findEmpId}">
+        <p>회원님의 아이디는 <b th:text="${findEmpId}"></b> 입니다.</p>
+    </div>
+    <!-- 혹시 아이디 못 찾았을 때 메시지 -->
+    <div th:if="${msg}">
+        <p style="color:red;" th:text="${msg}"></p>
+    </div>
+    <a href="/login"><button class="btn">로그인하러가기</button></a>
+    <a href="/find-pw"><button class="btn">비밀번호 찾기</button></a>
+</div>
+</body>
+</html>

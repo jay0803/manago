@@ -1,0 +1,467 @@
+form {
+    margin: 0 auto;
+    width: 420px;
+    border: 2px solid black;
+}
+label{
+    position: relative;
+}
+input{
+    width: 330px;
+    border: 0;
+    padding: 0;
+}
+select{
+    width: 340px;
+    border: 0;
+    color: gray;
+}
+p{
+    margin: auto;
+    padding: 5px;
+    font-size: 12px;
+}
+li{
+    font-size: 10px;
+    color: red;
+    display: none;
+}
+ul{
+    margin: -2px 0;
+    padding-left: 10px;
+}
+
+input:focus{
+    outline: none;
+}
+select:focus{
+    outline: none;
+}
+
+/* placeholder를 focus시 안보이게 */
+/* input:focus::placeholder{
+    opacity: 0;
+} */
+
+/* radio마크 안보이게 */
+.infoSC{
+    display: none;
+}
+
+/*추가적 css 아이디, 비밀번호찾기*/
+.btn, .submit-btn, button.common-btn {
+    display: block;
+    margin: 10px auto 10px auto;
+    width: 382px;
+    height: 50px;
+    border-radius: 7px;
+    color: white;
+    font: bold 14px white;
+    background-color: rgb(96, 190, 96);
+    border: none;
+    transition: background 0.2s;
+}
+
+.btn:hover, .submit-btn:hover, button.common-btn:hover {
+    background-color: #27ae60;
+    cursor: pointer;
+}
+/*========================================================*/
+
+/* label 모서리 조절 */
+#labelID, #labelNM{
+    border-radius: 7px 7px 0 0;
+}
+#labelEM, #labelT{
+    border-radius: 0 0 7px 7px;
+}
+
+/* label 사이 border굵기 조절 */
+#labelPW, #labelDT, #labelTS{
+    margin-bottom: -1.5px;
+    margin-top: -1.5px;
+}
+/* hover시 포인터 설정 */
+#submit:hover{
+    cursor: pointer;
+}
+select:hover{
+    cursor: pointer;
+}
+.leftLabel, .rightLabel:hover{
+    cursor: pointer;
+}
+
+/* ----------- label 기본 설정 ----------- */
+.labelDefault{
+    width: 370px;
+    height: 39px;
+    display: flex;
+    padding: 5px 5px;
+    border: 1.5px solid gray;
+    margin: 0 auto;
+}
+.labelError{
+    z-index: 10;
+    width: 370px;
+    height: 39px;
+    display: flex;
+    padding: 5px 5px;
+    border: 1.5px solid red;
+    margin: 0 auto;
+}
+.labelFocus{
+    z-index: 5;
+    width: 370px;
+    height: 39px;
+    display: flex;
+    padding: 5px 5px;
+    border: 1.5px solid rgb(96, 190, 96);
+    margin: 0 auto;
+}
+div{
+    width: 370px;
+    padding: 5px 5px;
+    border: 0;
+    margin: 0 auto;
+}
+#emailAddress{
+    width : 80px;
+    font-size: 14px;
+    color: gray;
+    padding: 8px 5px;
+    margin : 0;
+}
+#labelSC{
+    width: 370px;
+    display: flex;
+    padding: 5px 5px;
+    border: 1.5px solid gray;
+    margin: 0 auto;
+}
+/* ----------- label 기본 설정 ----------- */
+
+/* submit 설정 */
+#submit{
+    display: block;
+    margin: 10px auto 10px auto;
+    width: 382px;
+    height: 50px;
+    border-radius: 7px;
+    color: white;
+    font: bold 14px white;
+    background-color: rgb(96, 190, 96);
+}
+
+/* --------- 성별, 국가 선택 라벨 설정 ---------- */
+.leftLabel{
+    width: 90px;
+    height: 25px;
+    padding: 5px 5px;
+    border: 1.5px solid gray; /* solid와 같은 border-style 주는거 잊지 말 것 */
+    border-radius: 7px 0 0 7px;
+    text-align: center;
+}
+.rightLabel{
+    width: 90px;
+    height: 25px;
+    padding: 5px 5px;
+    border: 1.5px solid gray;
+    /* 라벨 사이에 줄이 굵어지지 않도록 */
+    margin-left : -1.5px;
+    border-radius: 0 7px 7px 0;
+    text-align: center;
+}
+/* label 사이에 간격 벌리기 위함 */
+#labelK{
+    margin-left: 15px;
+}
+/* --------- 성별, 국가 선택 라벨 설정 ---------- */
+
+/* --------------- 이미지 설정 ----------------- */
+.icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: center;
+    background-size: cover;
+    margin : 10px 5px 0 2px;
+}
+
+/* 아이디 */
+#person1{
+    background-image: url("../img/person.svg");
+}
+#labelID:has(input:focus) span{
+    background-image: url("../img/personF.svg");
+}
+/* 비밀번호 */
+#lock{
+    background-image: url("../img/lock.svg");
+}
+#labelPW:has(input:focus) span{
+    background-image: url("../img/lockF.svg");
+}
+/* e메일 */
+#mail{
+    background-image: url("../img/mail.svg");
+}
+#labelEM:has(input:focus) span{
+    background-image: url("../img/mailF.svg");
+}
+/* 이름 */
+#person2{
+    background-image: url("../img/person.svg");
+}
+#labelNM:has(input:focus) span{
+    background-image: url("../img/personF.svg");
+}
+/* 생년월일 */
+#birth{
+    background-image: url("../img/birth.svg");
+}
+#labelDT:has(input:focus) span{
+    background-image: url("../img/birthF.svg");
+}
+/* 통신사선택 */
+#trans{
+    background-image: url("../img/trans.svg");
+}
+#labelTS:has(select:focus) span{
+    background-image: url("../img/transF.svg");
+}
+/* 휴대전화번호 */
+#tel{
+    background-image: url("../img/tel.svg");
+}
+#labelT:has(input:focus) span{
+    background-image: url("../img/telF.svg");
+}
+/* --------------- 이미지 설정 ------------------ */
+
+/* --------- select, input이 "focus시" --------- */
+.labelFocus{
+    border: 1.5px solid rgb(96, 190, 96);
+}
+
+input:focus::placeholder{
+    color: rgb(96, 190, 96);
+    font-weight: bold;
+    text-decoration: underline;
+}
+/* --------- select, input이 "focus시" --------- */
+
+/* --------- select, input이 "blur시" --------- */
+.labelError{
+    border: 1.5px solid red;
+}
+
+.labelError>input::placeholder{
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* --------- select, input이 "blur시" --------- */
+
+/* ------- 성별 국가선택 label "checked시" ------- */
+.leftLabel:has(input:checked){
+    border: 1.5px solid rgb(96, 190, 96);
+    color: rgb(96, 190, 96);
+    font-weight: bold;
+    z-index: 5;
+}
+.rightLabel:has(input:checked){
+    border: 1.5px solid rgb(96, 190, 96);
+    color: rgb(96, 190, 96);
+    font-weight: bold;
+    z-index: 5;
+}
+/* ------- 성별 국가선택 label "checked시" ------- */
+
+/* ------- 성별 label "checked X 시" ------- */
+.genderLabelErr{
+    border: 1.5px solid red;
+    color: red;
+    font-weight: bold;
+}
+/* ------- 성별 label "checked X 시" ------- */
+
+/* 로그인/회원가입/찾기 폼 전체 박스 스타일 */
+.main-form {
+    width: 380px;
+    margin: 60px auto 0 auto;
+    padding: 36px 28px 32px 28px;
+    border: 2px solid #222;
+    border-radius: 14px;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 32px;
+    align-self: flex-start;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1.5px solid #bbb;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #f9f9f9;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.label-text {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 7px;
+    margin-left: 2px;
+}
+
+.sms-btn, .login-btn, .big-btn {
+    width: 100%;
+    height: 48px;
+    background: rgb(96, 190, 96);
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.sms-btn:hover, .login-btn:hover, .big-btn:hover {
+    background: #27ae60;
+}
+
+.btn-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+}
+.btn-row .mini-btn {
+    flex: 1;
+    height: 40px;
+    font-size: 15px;
+    background: rgb(96, 190, 96);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.btn-row .mini-btn:hover {
+    background: #27ae60;
+}
+
+.main-form {
+    width: 380px;
+    margin: 60px auto 0 auto;
+    padding: 36px 28px 32px 28px;
+    border: 2px solid #222;
+    border-radius: 14px;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 32px;
+    align-self: flex-start;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1.5px solid #bbb;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #f9f9f9;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.label-text {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 7px;
+    margin-left: 2px;
+}
+
+.sms-btn, .login-btn, .big-btn {
+    width: 100%;
+    height: 48px;
+    background: rgb(96, 190, 96);
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.sms-btn:hover, .login-btn:hover, .big-btn:hover {
+    background: #27ae60;
+}
+
+.btn-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+}
+.btn-row .mini-btn {
+    flex: 1;
+    height: 40px;
+    font-size: 15px;
+    background: rgb(96, 190, 96);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.btn-row .mini-btn:hover {
+    background: #27ae60;
+}
+
+/* 로그인하러가기 등 하단 네비 버튼 */

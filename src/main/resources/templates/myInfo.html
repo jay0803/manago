@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>내 정보 수정</title>
+  <link rel="stylesheet" href="/user/css/common.css" />
+</head>
+<body>
+<div class="container">
+  <div class="logo">내 정보 수정</div>
+  <form action="/user/myinfoUpdate" method="post">
+    <div class="form-group">
+      <label for="empId">아이디</label>
+      <input type="text" id="empId" name="empId" value="{{user.empId}}" readonly />
+    </div>
+
+    <div class="form-group">
+      <label for="emPw">비밀번호</label>
+      <input type="password" id="emPw" name="emPw" placeholder="비밀번호 입력" />
+    </div>
+
+    <div class="form-group">
+      <label for="empEm">이메일</label>
+      <input type="email" id="empEm" name="empEm" value="{{user.empEm}}" />
+    </div>
+
+    <div class="form-group">
+      <label for="empTel">전화번호</label>
+      <input type="text" id="empTel" name="empTel" value="{{user.empTel}}" />
+    </div>
+
+    <div class="form-group">
+      <label for="uaddr">주소</label>
+      <input type="text" id="uaddr" name="uaddr" value="{{user.uaddr}}" />
+    </div>
+
+    <div class="form-group">
+      <button type="submit">정보 수정</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

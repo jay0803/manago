@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>비밀번호 찾기</title>
+  <style>
+    body { background: #fff; margin:0; }
+    .main-form1 {
+        width: 430px;
+        margin: 60px auto;
+        padding: 46px 32px 34px 32px;
+        border: 2px solid #222;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main-form h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 32px;
+        color: rgb(54,130,54);
+    }
+    .form-group {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .input-box {
+        width: 100%;
+        height: 48px;
+        margin-bottom: 14px;
+        padding: 0 14px;
+        border: 1.5px solid #bbb;
+        border-radius: 8px;
+        font-size: 16px;
+        background: #f9f9f9;
+        box-sizing: border-box;
+    }
+    .sms-row {
+        display: flex; gap: 10px; width:100%; margin-bottom: 14px;
+    }
+    .sms-btn {
+        width: 42%;
+        background: rgb(96,190,96);
+        color: #fff;
+        font-weight: bold;
+        font-size: 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.14s;
+    }
+    .sms-btn:hover { background: #36ba5e; }
+    .main-form .big-btn {
+        width: 100%;
+        height: 48px;
+        background: rgb(96,190,96);
+        color: #fff;
+        font-weight: bold;
+        font-size: 17px;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        cursor: pointer;
+    }
+    .main-form .big-btn:hover { background: #36ba5e; }
+    .btn-row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 8px;
+    }
+    .btn-row .mini-btn {
+        flex: 1;
+        height: 40px;
+        font-size: 15px;
+        background: rgb(96,190,96);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .btn-row .mini-btn:hover { background: #36ba5e; }
+  </style>
+</head>
+<body>
+<div class="main-form1">
+  <div class="main-form">
+  <div class="form-title">비밀번호 찾기</div>
+  <form method="post" action="/find-pw" style="width:100%">
+    <div class="form-group">
+      <input type="text" name="empId" class="input-box" placeholder="아이디" required>
+    </div>
+    <div class="form-group">
+      <input type="text" name="empNm" class="input-box" placeholder="이름" required>
+    </div>
+    <div class="form-group">
+      <label class="label-text">등록된 휴대폰번호</label>
+      <div style="display: flex; gap:8px;">
+        <input type="text" name="empTel" class="input-box" style="flex:2;" placeholder="휴대폰번호" required>
+        <button type="button" class="sms-btn" style="flex:1;">인증번호 발송</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" name="smsCode" class="input-box" placeholder="인증번호 입력" required>
+    </div>
+    <button type="submit" class="big-btn">비밀번호 찾기</button>
+    <div class="btn-row">
+      <a href="/login"><button type="button" class="mini-btn">로그인하러가기</button></a>
+      <a href="/find-id"><button type="button" class="mini-btn">아이디 찾기</button></a>
+    </div>
+  </form>
+</div>
+
+</div>
+<script>
+  function sendSms() {
+      const tel = document.getElementById('tel').value;
+      if (!tel) {
+          alert('휴대폰 번호를 입력해주세요!');
+          return;
+      }
+      fetch('/send-sms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tel: tel })
+      })
+      .then(res => res.json())
+      .then(data => {
+          if (data.result === 'success') alert('인증번호가 발송되었습니다!');
+          else alert('인증번호 발송에 실패했습니다!');
+      })
+      .catch(() => alert('서버 오류!'));
+  }
+</script>
+</body>
+</html>
