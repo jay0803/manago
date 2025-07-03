@@ -1,112 +1,84 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>관리자 시스템 메인</title>
-    <style>
-        body { background: #fff; margin: 20px; }
-
-        .main-form3 {
-          width: 430px;
-          margin: 80px auto;
-          padding: 52px 36px 44px 36px;
-          border: 2px solid #222;
-          border-radius: 18px;
-          background: #fff;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.07);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .main-form3 h1 {
-          font-size: 2.7rem;
-          font-weight: bold;
-          margin-bottom: 48px;
-          letter-spacing: 1px;
-        }
-
-        .btn-wrap {
-          width: 100%;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 16px;
-          justify-content: center;
-          margin-top: 20px;
-        }
-
-        .main-form3 button {
-          width: 140px;
-          height: 52px;
-          font-size: 1.18rem;
-          font-weight: bold;
-          border: none;
-          border-radius: 11px;
-          background: rgb(96,190,96);
-          color: #fff;
-          cursor: pointer;
-          transition: background 0.13s;
-        }
-
-        .main-form3 button:hover {
-          background: #36ba5e;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>관리자 시스템 메인</title>
+  <style>
+    body {
+        margin: 0; padding: 0; height: 100vh;
+        background: #f8f8f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .center-box {
+        width: 400px;
+        padding: 40px 30px;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(40, 180, 120, 0.11), 0 1.5px 4px rgba(50,188,119,0.08);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+    }
+    .main-btn {
+        padding: 15px 0; font-size: 18px; border-radius: 14px; border: none;
+        background: #32bc77; color: #fff; font-weight: 700;
+        margin-bottom: 8px; cursor: pointer;
+        transition: background 0.18s, transform 0.16s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .main-btn:last-child { margin-bottom: 0; }
+    .main-btn:hover { background: #289a60; transform: scale(1.05); }
+    h1 { color: #32bc77; font-size: 2.1rem; margin-bottom: 15px; font-weight: bold; letter-spacing: 1.5px; }
+    .desc { font-size: 24px; font-weight:bold; color: #ccc; margin-bottom: 24px; }
+    .welcome { font-size: 1.3rem; color: #289a60; font-weight: bold; margin-bottom: 22px; }
+  </style>
 </head>
 <body>
-
-<!-- 로그인/비로그인 분기 -->
-<div class="main-form3">
-    <h1>관리자 시스템</h1>
-
-    <!-- 로그인하지 않은 경우 -->
-    <div th:if="${session.loginEmp == null}">
-        <a href="/login"><button>로그인</button></a>
-        <a href="/join"><button>회원가입</button></a>
-    </div>
-
-    <!-- 로그인한 경우 -->
-    <div th:if="${session.loginEmp != null}">
-        <p><strong th:text="${session.loginEmp.empNm}">사용자</strong>님 환영합니다!</p>
-        <div class="btn-wrap">
-            <a href="/mypage"><button>내 정보</button></a>
-            <a href="/logout"><button>로그아웃</button></a>
-        </div>
-    </div>
+<div class="center-box"
+     th:if="${session.loginUser == null}">
+  <h1>MANAGO</h1>
+  <div class="desc">로그인 후 이용해주세요!</div>
+  <a href="/login" class="main-btn">로그인</a>
+  <a href="/join" class="main-btn">회원가입</a>
 </div>
 
-<!-- 로그인한 경우만 메뉴 표시 -->
-<div th:if="${session.loginEmp != null}" class="main-form3">
-    <!-- 인사 관리자 -->
-    <div th:if="${session.positionNo == 1}">
-        <h2>인사 관리자 메뉴</h2>
-        <div class="btn-wrap">
-            <a href="/emp/list"><button>사원목록</button></a>
-            <a href="/emp/reg"><button>사원등록</button></a>
-        </div>
+<!-- 로그인된 경우만 메뉴 출력 -->
+<div th:if="${session.loginUser != null}">
+  <div class="center-box" style="gap: 20px;">
+    <div class="welcome" th:text="${session.loginUser.empNm} + '님 환영합니다!'"></div>
+    <!-- 권한별 메뉴 -->
+    <div th:if="${session.position == 'admin'}">
+      <h2>인사 관리자 메뉴</h2>
+      <a th:href="@{/user/myInfo}"><button>내정보</button></a>
+      <a href="/attend"><button>출퇴근</button></a>
+      <a href="/sign/vac/write"><button>휴가/연차/반차계 신청</button></a>
+      <a href="/sign/work/write"><button>업무일지 작성</button></a>
+      <a href="/emp/list"><button>사원목록</button></a>
+      <a href="/emp/reg"><button>사원등록,삭제,수정</button></a>
+      <!-- 추가 메뉴 -->
     </div>
-
-    <!-- 상위 관리자 -->
-    <div th:if="${session.positionNo == 2}">
-        <h2>상위 관리자 메뉴</h2>
-        <div class="btn-wrap">
-            <a href="/sign/vac"><button>휴가 결재</button></a>
-            <a href="/sign/work"><button>업무일지 결재</button></a>
-            <a href="/worktime/all"><button>출퇴근 전체관리</button></a>
-        </div>
+    <div th:if="${session.position == 'super'}">
+      <h2>상위 관리자 메뉴</h2>
+      <a th:href="@{/user/myInfo}"><button>내정보</button></a>
+      <a href="/attend"><button>출퇴근</button></a>
+      <a href="/sign/vac"><button>휴가/연차/반차계결제</button></a>
+      <a href="/attend/list"><button>출퇴근 리스트 관리</button></a>
+      <a href="/sign/work"><button>업무일지 결제</button></a>
+      <!-- 추가 메뉴 -->
     </div>
-
-    <!-- 일반 사원 -->
-    <div th:if="${session.positionNo == 3}">
-        <h2>사원 메뉴</h2>
-        <div class="btn-wrap">
-            <a href="/mypage"><button>내정보</button></a>
-            <a href="/worktime"><button>출퇴근</button></a>
-            <a href="/sign/vac/write"><button>휴가 신청</button></a>
-            <a href="/sign/work/write"><button>업무일지 작성</button></a>
-        </div>
+    <div th:if="${session.position == 'user'}">
+      <h2>사원/사용자 메뉴</h2>
+      <a th:href="@{/user/myInfo}"><button>내정보</button></a>
+      <a href="/attend"><button>출퇴근</button></a>
+      <a href="/sign/vac/write"><button>휴가/연차/반차계 신청</button></a>
+      <a href="/sign/work/write"><button>업무일지 작성 </button></a>
+      <!-- 추가 메뉴 -->
     </div>
+    <a href="/logout" class="main-btn" style="background: #e96c62;">로그아웃</a>
+  </div>
 </div>
-
 </body>
 </html>

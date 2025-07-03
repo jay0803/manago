@@ -1,101 +1,207 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>아이디 찾기</title>
     <style>
         body { background: #fff; margin:0; }
         .main-form {
-            width: 430px;
-            margin: 60px auto;
-            padding: 46px 32px 34px 32px;
-            border: 2px solid #222;
-            border-radius: 18px;
-            background: #fff;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.07);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+          width: 430px;
+          margin: 60px auto;
+          padding: 46px 32px 34px 32px;
+          border: 2px solid #222;
+          border-radius: 18px;
+          background: #fff;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
-        .main-form h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 32px;
-            color: rgb(54,130,54);
+        .main-form h1 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 32px;
+          color: rgb(54,130,54);
         }
-        .form-group {
-            width: 100%;
-            margin-bottom: 20px;
+        .input-wrap {
+          position: relative;
+          width: 100%;
+          margin-bottom: 16px;
         }
         .input-box {
-            width: 100%;
-            height: 48px;
-            margin-bottom: 16px;
-            padding: 0 14px;
-            border: 1.5px solid #bbb;
-            border-radius: 8px;
-            font-size: 16px;
-            background: #f9f9f9;
-            box-sizing: border-box;
+          width: 100%;
+          height: 48px;
+          padding: 0 40px 0 14px;
+          border: 1.5px solid #bbb;
+          border-radius: 8px;
+          font-size: 16px;
+          background: #f9f9f9;
+          box-sizing: border-box;
         }
-        .main-form button {
-            width: 100%;
-            height: 48px;
-            background: rgb(96,190,96);
-            color: #fff;
-            font-weight: bold;
-            font-size: 17px;
-            border: none;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            cursor: pointer;
+        .clear-btn {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          font-size: 22px;
+          color: #bbb;
+          cursor: pointer;
+          display: none;
+          padding: 0;
         }
-        .main-form button:hover { background: #36ba5e; }
+        .input-box.error { border: 2px solid red; }
+        .input-box:focus { border: 1.5px solid #60be60; }
+        .btn-row {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+          margin-top: 8px;
+        }
+        .btn-row .mini-btn {
+          flex: 1;
+          height: 40px;
+          font-size: 15px;
+          background: rgb(96,190,96);
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .btn-row .mini-btn:hover { background: #36ba5e; }
+        .big-btn {
+          width: 100%;
+          height: 48px;
+          background: rgb(96,190,96);
+          color: #fff;
+          font-weight: bold;
+          font-size: 17px;
+          border: none;
+          border-radius: 8px;
+          margin-bottom: 12px;
+          cursor: pointer;
+        }
+        .big-btn:hover { background: #36ba5e; }
+        .timer {
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
 <div class="main-form">
     <h1>아이디 찾기</h1>
-    <form action="/find-id" method="post">
-        <input type="text" name="empNm" placeholder="이름" class="input-box" required>
-        <input type="text" name="empTel" placeholder="전화번호" class="input-box" required>
-        <!-- 통신사 선택 -->
-        <select name="telco" class="input-box" required>
-            <option value="">통신사 선택</option>
-            <option value="SKT">SKT</option>
-            <option value="KT">KT</option>
-            <option value="LG U+">LG U+</option>
-            <option value="SKT_SS">SKT 알뜰폰</option>
-            <option value="KT_SS">KT 알뜰폰</option>
-            <option value="LGU+_SS">LGU+ 알뜰폰</option>
-        </select>
-        <!-- 인증번호 입력 -->
-        <div style="display:flex; gap:8px; margin-bottom:18px;">
-            <input type="text" name="smsCode" placeholder="인증번호" class="input-box" style="flex:2;">
+    <form action="/find-id" method="post" id="findIdForm">
+        <div class="input-wrap">
+            <input type="text" name="empNm" placeholder="이름" class="input-box" required>
+            <button type="button" class="clear-btn" tabindex="-1">&times;</button>
+        </div>
+        <div class="input-wrap">
+            <input type="text" name="empTel" placeholder="전화번호" class="input-box" required>
+            <button type="button" class="clear-btn" tabindex="-1">&times;</button>
+        </div>
+        <div class="input-wrap" style="display:flex; gap:8px;">
+            <input type="text" name="smsCode" placeholder="인증번호" class="input-box" style="flex:2;" required>
             <button type="button" id="sendSmsBtn" style="flex:1; background:#60be60; color:white; border:none; border-radius:8px;">인증요청</button>
         </div>
-        <button type="submit" class="input-box" style="background:#60be60; color:white; font-weight:bold;">아이디 찾기</button>
-    </form>
+        <div class="timer" id="timer"></div>
+        <button type="submit" class="big-btn">아이디 찾기</button>
+        <div class="btn-row">
+            <a href="/login"><button type="button" class="mini-btn">로그인하러가기</button></a>
+            <a href="/index"><button type="button" class="mini-btn">홈으로</button></a>
+            <a href="/find_pw"><button type="button" class="mini-btn">비밀번호 찾기</button></a>
+        </div>
     </form>
 </div>
 <script>
-    // 실제 서버에 인증번호 요청
-    document.getElementById('sendSmsBtn').onclick = function() {
-      const empTel = document.querySelector('input[name="empTel"]').value;
-      if(!empTel) {
-        alert("전화번호를 입력하세요");
-        return;
-      }
-      fetch('/sms/send', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ to: empTel })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if(data.success) alert("인증번호가 발송되었습니다!");
-        else alert("문자 발송 실패: " + (data.msg || "오류"));
+    let expireTime = null;
+    let intervalId = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // x버튼, focus, blur 처리
+      document.querySelectorAll('.input-wrap').forEach(function(wrap) {
+        const input = wrap.querySelector('.input-box');
+        const clearBtn = wrap.querySelector('.clear-btn');
+        if (!input || !clearBtn) return;
+
+        input.addEventListener('input', function() {
+          clearBtn.style.display = this.value ? 'block' : 'none';
+          input.classList.remove('error');
+        });
+        clearBtn.addEventListener('click', function() {
+          input.value = '';
+          input.focus();
+          clearBtn.style.display = 'none';
+        });
+        input.addEventListener('blur', function() {
+          if (!input.value.trim()) input.classList.add('error');
+          else input.classList.remove('error');
+        });
       });
+
+      // submit 검증
+      document.getElementById('findIdForm').onsubmit = function(e) {
+        if (!validateInputs(this)) e.preventDefault();
+      };
+
+      // 인증요청
+      document.getElementById('sendSmsBtn').onclick = function(e) {
+        const tel = document.querySelector('input[name="empTel"]').value;
+        if (!tel) {
+          alert('전화번호를 입력해주세요.');
+          return;
+        }
+        fetch('/send-sms', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tel: tel })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.result === 'success') {
+            alert('인증번호가 발송되었습니다.');
+            expireTime = Date.now() + 5 * 60 * 1000;
+            startTimer();
+          } else {
+            alert('발송 실패');
+          }
+        })
+        .catch(() => alert('서버 오류'));
+      };
+    });
+
+    function validateInputs(form) {
+      let valid = true;
+      form.querySelectorAll('.input-box[required]').forEach(function(input) {
+        if (!input.value.trim()) {
+          input.classList.add('error');
+          valid = false;
+        } else {
+          input.classList.remove('error');
+        }
+      });
+      if (!valid) alert('필수 항목을 모두 입력해주세요.');
+      return valid;
+    }
+
+    function startTimer() {
+      clearInterval(intervalId);
+      const timerDiv = document.getElementById('timer');
+      intervalId = setInterval(() => {
+        const remaining = expireTime - Date.now();
+        if (remaining <= 0) {
+          clearInterval(intervalId);
+          timerDiv.innerText = '인증번호가 만료되었습니다.';
+        } else {
+          const min = Math.floor(remaining / 60000);
+          const sec = Math.floor((remaining % 60000) / 1000);
+          timerDiv.innerText = `남은 시간: ${min}분 ${sec < 10 ? '0' : ''}${sec}초`;
+        }
+      }, 1000);
     }
 </script>
 </body>

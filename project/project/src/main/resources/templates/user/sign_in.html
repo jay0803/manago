@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign_in</title>
+    <link href="./css/common.css" rel="stylesheet"/>
+    <script src="./js/sign_in.js"></script>
+</head>
+<body>
+    <form action="/login" method="post" id="loginForm">
+        <div>
+            <h1 style="text-align: center; color: rgb(96, 190, 96)">로그인</h1>
+        </div>
+        <label class="labelDefault" id="labelID">
+            <span class="icon" id="person1"></span>
+            <input type="search" placeholder="아이디" id="empId" name="empId" class="info needInfo">
+        </label>
+        <label class="labelDefault" id="labelPW" style="border-radius: 0 0 7px 7px;">
+            <span class="icon" id="lock"></span>
+            <input type="text" type="text" placeholder="비밀번호" id="empPw" name="empPw" class="info needInfo">
+        </label>
+        <input type="submit" id="submit" value="로그인">
+    </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>부서별 근태관리</title>
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          text-align: center;
+          margin-top: 80px;
+        }
+
+        h2 {
+          margin-bottom: 40px;
+        }
+
+        .department-buttons {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .dept-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 14px 24px;
+          background-color: #4CAF50;
+          color: white;
+          font-size: 16px;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: background-color 0.2s ease, color 0.2s ease;
+          margin-bottom: 16px;
+          width: 220px;
+        }
+
+        .dept-btn i {
+          font-size: 18px;
+        }
+
+        .dept-btn:active {
+          background-color: #ddd;
+          color: #333;
+        }
+    </style>
+
+    <!-- 폰트어썸 아이콘 불러오기 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<h2>부서별 근태관리</h2>
+
+<div class="department-buttons">
+    <button class="dept-btn" onclick="location.href='/admin/attend/1'><i class="fas fa-building"></i> 총무팀</button>
+    <button class="dept-btn" onclick="location.href='/admin/attend/2'><i class="fas fa-users"></i> 인사팀</button>
+    <button class="dept-btn" onclick="location.href='/admin/attend/3><i class="fas fa-briefcase"></i> 영업팀</button>
+    <button class="dept-btn" onclick="location.href='/admin/attend/4><i class="fas fa-laptop-code"></i> 개발팀</button>
+    <button class="dept-btn" onclick="location.href='/admin/attend/5><i class="fas fa-paint-brush"></i> 디자인팀</button>
+</div>
+
+</body>
+</html>

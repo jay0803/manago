@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>아이디 찾기 성공</title>
+  <style>
+    body { background:#fff; margin:0; display:flex; justify-content:center; align-items:center; height:100vh; }
+    .success-box {
+        border:2px solid #60be60;
+        padding:40px;
+        border-radius:12px;
+        text-align:center;
+        box-shadow:0 8px 24px rgba(0,0,0,0.1);
+    }
+    .success-box h2 {
+        color:#36ba5e;
+        margin-bottom:20px;
+    }
+    .success-box p {
+        font-size:18px;
+        margin-bottom:20px;
+    }
+    .success-box a {
+        display:inline-block;
+        background:#60be60;
+        color:white;
+        padding:10px 20px;
+        border-radius:8px;
+        text-decoration:none;
+        font-weight:bold;
+    }
+    .success-box a:hover {
+        background:#36ba5e;
+    }
+  </style>
+</head>
+<body>
+<div class="success-box">
+  <h2>아이디 찾기 성공!</h2>
+  <p>회원님의 아이디는 <strong th:text="${foundId}">abc123</strong> 입니다.</p>
+  <a href="/login">로그인하러 가기</a>
+</div>
+</body>
+</html>

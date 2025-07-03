@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="headerFragment">
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a th:href="@{'/index'}">홈으로</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a th:href="@{'/boardList'}">글목록보기</a>
+            </li>
+            <li th:if="${!#strings.isEmpty(session.loginId)}">
+                <a th:href="@{'/boardForm'}">글등록</a>
+            </li>
+        </ul>
+        <ul class="hdUl" th:if="${#strings.isEmpty(session.loginId)}">
+            <li>
+                <a th:href="@{'/join'}">회원가입</a>
+            </li>
+            <li>
+                <a th:href="@{'/login'}">로그인</a>
+            </li>
+        </ul>
+        <ul class="hdUl" th:unless="${#strings.isEmpty(session.loginId)}">
+            <li>
+                <span id="nmspan" th:text="${session.loginNm+'님'}"></span>
+            </li>
+            <li>
+                <a th:href="@{'/myInfo'}">내정보보기</a>
+            </li>
+            <li>
+                <a th:href="@{'/logout'}">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

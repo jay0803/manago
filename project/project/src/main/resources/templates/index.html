@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>관리자 시스템 메인</title>
+  <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div class="main-form">
+  <h1>관리자 시스템</h1>
+  <a href="/login"><button>로그인</button></a>
+  <a href="/join"><button>회원가입</button></a>
+</div>
+  <!-- 권한별 분기 (Thymeleaf) -->
+  <div th:if="${session.position == 'admin'}">
+    <h2>인사 관리자 메뉴</h2>
+    <a href="/emp/list"><button>사원목록</button></a>
+    <a href="/emp/reg"><button>사원등록</button></a>
+    <!-- 추가 메뉴 -->
+  </div>
+  <div th:if="${session.position == 'super'}">
+    <h2>상위 관리자 메뉴</h2>
+    <a href="/sign/vac"><button>휴가/연차/반차계 결제</button></a>
+    <a href="/sign/work"><button>업무일지 결제</button></a>
+    <a href="/worktime/all"><button>출퇴근 전체관리</button></a>
+    <!-- 추가 메뉴 -->
+  </div>
+  <div th:if="${session.position == 'user'}">
+    <h2>사원/사용자 메뉴</h2>
+    <a href="/mypage"><button>내정보</button></a>
+    <a href="/worktime"><button>출퇴근</button></a>
+    <a href="/sign/vac/write"><button>휴가/연차/반차계 신청</button></a>
+    <a href="/sign/work/write"><button>업무일지 작성</button></a>
+    <!-- 추가 메뉴 -->
+  </div>
+</div>
+</body>
+</html>

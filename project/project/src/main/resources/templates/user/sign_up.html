@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign_up</title>
+  <link href="./css/common.css" rel="stylesheet"/>
+  <script src="./js/sign_up.js"></script>
+</head>
+<body>
+<form id="joinForm" action="/join" method="post"> <!--action="/sign_up" method="post"-->
+  <div>
+    <h1 style="text-align: center; color: rgb(96, 190, 96)">회원가입</h1>
+  </div>
+  <!-- 아이디 ~ 이메일 입력 -->
+  <label class="labelDefault" id="labelID">
+    <span class="icon" id="person1"></span>
+    <input type="search" placeholder="아이디" id="empId" name="empId" class="info needInfo" style="width : 260px;font-size: 12px;"> <!-- 필수 -->
+    <div id="emailAddress">@kimjy.com</div>
+  </label>
+  <label class="labelDefault" id="labelPW">
+    <span class="icon" id="lock"></span>
+    <input type="password" placeholder="비밀번호" id="empPw" name="empPw" class="info needInfo"> <!-- 필수 -->
+  </label>
+  <label class="labelDefault" id="labelEM">
+    <span class="icon" id="mail"></span>
+    <input type="text" placeholder="[선택] 비밀번호 분실 시 확인용 이메일" id="empEm" name="empEm" class="info"> <!-- 선택 -->
+  </label>
+  <div>
+    <ul>
+      <li id="liId1">아이디: 필수 정보입니다.</li>
+      <li id="liId2">아이디: 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.</li>
+      <!-- <li id="liId3">아이디: 사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.</li> -->
+      <li id="liPw1">비밀번호: 필수 정보입니다.</li>
+      <li id="liPw2">비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</li>
+      <li id="liPw3">비밀번호: 다른 사람이 유추할 수 없는 안전한 비밀번호를 사용해 주세요.</li>
+      <li id="liEm1">이메일: 이메일 주소가 정확한지 확인해 주세요.</li>
+    </ul>
+  </div>
+  <label class="labelDefault" id="labelNM">
+    <span class="icon" id="person2"></span>
+    <input type="text" placeholder="이름" id="empNm" name="empNm"  class="info needInfo"> <!-- 필수 -->
+  </label>
+  <label class="labelDefault" id="labelDT">
+    <span class="icon" id="birth"></span>
+    <input type="text" placeholder="생년월일 8자리" id="date" name="date" class="info needInfo"> <!-- 필수 -->
+  </label>
+
+  <!-- 성별, 국가 선택 -->
+  <label id="labelSC">
+    <label for="male" class="leftLabel" id="labelM"><p>남자</p><!-- 필수 -->
+      <input type="radio" name="gender" id="male" class="infoSC needInfo" value="m">
+    </label>
+    <label for="female" class="rightLabel" id="labelF"><p>여자</p>
+      <input type="radio" name="gender" id="female" class="infoSC needInfo" value="f">
+    </label>
+    <label for="local" class="leftLabel" id="labelK"><p>내국인</p><!-- 필수 -->
+      <input type="radio" name="uct" id="local" class="infoSC" value="l" checked>
+    </label>
+    <label for="foreigner" class="rightLabel" id="labelN"><p>외국인</p>
+      <input type="radio" name="uct" id="foreigner" class="infoSC" value="f">
+    </label>
+  </label>
+  <!-- 통신사 선택 -->
+  <label class="labelDefault" id="labelTS">
+    <span class="icon" id="trans"></span>
+    <select name="utelco" id="utelco" class="info needInfo"> <!-- 필수 -->
+      <option value="" disabled selected hidden>통신사선택</option>
+      <option value="SKT">SKT</option>
+      <option value="SKT SS">SKT 알뜰폰</option>
+      <option value="KT">KT</option>
+      <option value="KT SS">KT 알뜰폰</option>
+      <option value="LG U+">LG U+</option>
+      <option value="LG U+ SS">LG U+ 알뜰폰</option>
+    </select>
+  </label>
+  <!-- 휴대전화번호 입력 -->
+  <label class="labelDefault" id="labelT">
+    <span class="icon" id="tel"></span>
+    <input type="text" id="empTel" name="empTel" placeholder="휴대전화번호" class="info needInfo">
+  </label>
+  <div>
+    <li id="liNm1">이름: 필수 정보입니다.</li>
+    <li id="liNm2">이름: 한글, 영문 대/소문자를 사용해 주세요. (특수기호, 공백 사용 불가)</li>
+    <li id="liDt1">생년월일: 필수 정보입니다.(예:20010101)</li>
+    <li id="liDt2">생년월일: 생년월일이 정확한지 확인해 주세요.(예:20010101)</li>
+    <li id="liGd">성별: 성별을 선택해 주세요.</li>
+    <li id="liTc">통신사: 이용하는 통신사를 선택해 주세요.</li>
+    <li id="liT1">휴대전화번호: 필수 정보입니다.</li>
+    <li id="liT2">휴대전화번호: 휴대전화번호가 정확한지 확인해 주세요.</li>
+  </div>
+  <!-- 인증 요청 버튼 -->
+  <input type="submit" id="submit" value="인증요청">
+</form>
+</body>
+</html>
